@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: photoapp
+  name: photoapp
+  namespace: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: photoapp
+  template:
+    metadata:
+      labels:
+        app: photoapp
+    spec:
+      containers:
+      - image: "image"
+        ports:
+        - containerPort: 5000
+        imagePullPolicy: IfNotPresent
+        name: flask-app
+      restartPolicy: Always
