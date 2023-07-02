@@ -1,0 +1,38 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: photoapp-ingress
+  namespace: dev
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: "dns-path"
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: photoapp-service
+                port:
+                  number: 80
+    - host: "dns-path"
+      http:
+        paths:
+        - pathType: Prefix
+          path: /galleries/album/Party
+          backend:
+            service:
+              name: photoapp-service
+              port:
+                number: 80
+    - host: "dns-path"
+      http:
+        paths:
+        - pathType: Prefix
+          path: /galleries/album/cars
+          backend:
+            service:
+              name: photoapp-service
+              port:
+                number: 80
